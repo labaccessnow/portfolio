@@ -9,12 +9,18 @@ Static / Jamstack sites delivered behind a hardened, self-hosted edge.
   with security headers and per-host routing.
 - **Push-to-deploy** via GitHub Actions — build → rsync → live, no container rebuilds.
 
-## Where the stack is (2024–2026)
-**Astro** became the fastest-growing framework for content sites — **Astro 5 (2024)** shipped the
-Content Layer API and Server Islands (static-fast pages with islands of dynamic content), and in
-**January 2026 Cloudflare acquired Astro** (framework still MIT/open-source), tightening the
-static-site-to-edge story. That islands + edge model is exactly how I build: ship mostly static,
-serve it from a hardened edge, keep interactivity surgical, and treat the delivery edge (WAF, TLS,
-headers) as part of the project rather than an afterthought.
+## Best practices I follow
+- **Static-first, islands for interactivity** — ship HTML, keep JavaScript surgical.
+- **The edge is part of the project** — WAF, TLS, HSTS/security headers, and rate limiting are
+  built in, not bolted on.
+- **Immutable, reviewable deploys** — every change goes through CI; rollback is a redeploy.
+- **Own the delivery path** — self-hosted edge so there's no mystery layer between page and user.
 
-Designed, built, and operated end to end — from the page to the edge that serves it.
+## Where the stack went (dated)
+- **Dec 3, 2024:** **Astro 5** ships the Content Layer API and **Server Islands** (static-fast pages
+  with islands of dynamic content) — Astro becomes the fastest-growing framework for content sites.
+- **Jan 2026:** **Astro 6** beta (workerd dev server, dev/prod parity) and **Cloudflare acquires
+  Astro** (framework stays MIT/open-source), tightening the static-site-to-edge story.
+
+That islands + edge model is exactly how I build. Designed, built, and operated end to end —
+from the page to the edge that serves it.
